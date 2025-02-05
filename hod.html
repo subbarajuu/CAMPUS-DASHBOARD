@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOD Mam Dashboard</title>
+  <link rel="stylesheet" href="hod.css" />
+</head>
+<body onload="initDashboard()">
+  <div class="dashboard-container">
+    <header>
+      <h1>HOD Mam Dashboard</h1>
+      <nav>
+        <button onclick="logout()">Logout</button>
+      </nav>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tab-menu">
+      <button class="tab-link active" data-tab="attendance" onclick="showTab('attendance')">Take Attendance</button>
+      <button class="tab-link" data-tab="subjects" onclick="showTab('subjects')">Subject Allocation</button>
+      <button class="tab-link" data-tab="reports" onclick="showTab('reports')">Reports</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Attendance Module -->
+      <div id="attendance" class="tab-panel active">
+        <h2 class="section-title">Collect Attendance from CR's</h2>
+        <div class="attendance-controls">
+          <label for="yearSelect">Select Year:</label>
+          <select id="yearSelect" onchange="populateSections()">
+            <option value="">--Select Year--</option>
+            <option value="Year1">Year 1</option>
+            <option value="Year2">Year 2</option>
+            <option value="Year3">Year 3</option>
+            <option value="Year4">Year 4</option>
+          </select>
+          <label for="sectionSelect">Select Section:</label>
+          <select id="sectionSelect" onchange="loadAttendanceList()">
+            <option value="">--Select Section--</option>
+            <!-- Options will be populated based on Year -->
+          </select>
+        </div>
+        <div id="attendanceList" class="attendance-list">
+          <!-- Dynamic list of students (from CR's) with checkboxes will appear here -->
+        </div>
+        <button class="submit-btn" onclick="submitAttendance()">Submit Attendance</button>
+        <div id="attendanceMessage" class="attendance-message"></div>
+      </div>
+
+      <!-- Subject Allocation Module -->
+      <div id="subjects" class="tab-panel">
+        <h2 class="section-title">Subject Allocation</h2>
+        <form id="subjectForm">
+          <input type="text" id="facultyName" placeholder="Faculty Name" required />
+          <input type="text" id="subjectName" placeholder="Subject Name" required />
+          <input type="number" id="subjectCredits" placeholder="Credits" min="1" required />
+          <button type="submit">Allocate Subject</button>
+        </form>
+        <div id="subjectList">
+          <h3>Allocated Subjects</h3>
+          <ul></ul>
+        </div>
+      </div>
+
+      <!-- Reports Module -->
+      <div id="reports" class="tab-panel">
+        <h2 class="section-title">Summary Reports</h2>
+        <button class="submit-btn" onclick="generateReport()">Generate Report</button>
+        <div id="reportContent" class="report-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="hod.js"></script>
+</body>
+</html>

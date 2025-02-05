@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="faculty.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="fade-in">Faculty Dashboard</h2>
+        
+        <div class="form-section slide-in">
+            <input type="text" id="subjectName" placeholder="Enter Subject Name">
+            <input type="number" id="subjectCredits" placeholder="Enter Credits" min="1">
+            <button onclick="addSubject()">Add Subject</button>
+        </div>
+
+        <div class="summary-box">
+            <h3>Total Credits: <span id="totalCredits">0</span></h3>
+            <h3>Weekly Teaching Hours: <span id="totalHours">0</span></h3>
+        </div>
+
+        <table id="subjectTable" class="table">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Credits</th>
+                    <th>Weekly Hours</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script src="faculty.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AO Sir Dashboard</title>
+  <link rel="stylesheet" href="ao.css" />
+</head>
+<body onload="initDashboard()">
+  <div class="dashboard-container">
+    <header>
+      <h1>AO Sir Dashboard</h1>
+      <nav>
+        <button onclick="logout()">Logout</button>
+      </nav>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tab-menu">
+      <button class="tab-link active" data-tab="admissions" onclick="showTab('admissions')">Admissions</button>
+      <button class="tab-link" data-tab="fees" onclick="showTab('fees')">Fee Collection</button>
+      <button class="tab-link" data-tab="events" onclick="showTab('events')">Events</button>
+      <button class="tab-link" data-tab="reports" onclick="showTab('reports')">Reports</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Admissions / Registration Module -->
+      <div id="admissions" class="tab-panel active">
+        <h2>Student Admissions & Registration</h2>
+        <form id="admissionForm">
+          <input type="text" id="studentName" placeholder="Student Name" required />
+          <input type="text" id="studentID" placeholder="Student ID" required />
+          <input type="email" id="studentEmail" placeholder="Student Email" required />
+          <button type="submit">Register Student</button>
+        </form>
+        <div id="admissionsList">
+          <h3>Registered Students</h3>
+          <ul></ul>
+        </div>
+      </div>
+
+      <!-- Fee Collection Module -->
+      <div id="fees" class="tab-panel">
+        <h2>Fee Collection</h2>
+        <form id="feeForm">
+          <input type="text" id="feeStudentID" placeholder="Student ID" required />
+          <input type="number" id="feeAmount" placeholder="Fee Amount" required />
+          <button type="submit">Record Fee Payment</button>
+        </form>
+        <div id="feeList">
+          <h3>Fee Records</h3>
+          <ul></ul>
+        </div>
+      </div>
+
+      <!-- Events Scheduling Module -->
+      <div id="events" class="tab-panel">
+        <h2>Campus Events & Scheduling</h2>
+        <form id="eventForm">
+          <input type="text" id="eventTitle" placeholder="Event Title" required />
+          <input type="date" id="eventDate" required />
+          <button type="submit">Schedule Event</button>
+        </form>
+        <div id="eventList">
+          <h3>Scheduled Events</h3>
+          <ul></ul>
+        </div>
+      </div>
+
+      <!-- Reports Module -->
+      <div id="reports" class="tab-panel">
+        <h2>Generate Reports</h2>
+        <button onclick="generateReport()">Generate Summary Report</button>
+        <div id="reportContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="ao.js"></script>
+</body>
+</html>
