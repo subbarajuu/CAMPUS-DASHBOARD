@@ -12,8 +12,8 @@ const sampleStudents = [
       }
     },
     {
-      name: "Bob",
-      id: "S002",
+      name: "praveen",
+      id: "s190792",
       attendance: {
         Monday: true,
         Tuesday: true,
@@ -23,7 +23,7 @@ const sampleStudents = [
       }
     },
     {
-      name: "Charlie",
+      name: "surya",
       id: "S003",
       attendance: {
         Monday: true,
