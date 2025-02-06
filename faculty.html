@@ -1,42 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty Dashboard</title>
-    <link rel="stylesheet" href="faculty.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard</title>
+  <link rel="stylesheet" href="faculty.css">
 </head>
-<body>
+<body onload="initDashboard()">
+  <div class="dashboard-container">
+    <header>
+      <h1>Faculty Dashboard</h1>
+      <nav>
+        <button onclick="logout()">Logout</button>
+      </nav>
+    </header>
 
-    <div class="container">
-        <h2 class="fade-in">Faculty Dashboard</h2>
-        
-        <div class="form-section slide-in">
-            <input type="text" id="subjectName" placeholder="Enter Subject Name">
-            <input type="number" id="subjectCredits" placeholder="Enter Credits" min="1">
-            <button onclick="addSubject()">Add Subject</button>
-        </div>
-
-        <div class="summary-box">
-            <h3>Total Credits: <span id="totalCredits">0</span></h3>
-            <h3>Weekly Teaching Hours: <span id="totalHours">0</span></h3>
-        </div>
-
-        <table id="subjectTable" class="table">
-            <thead>
-                <tr>
-                    <th>Subject</th>
-                    <th>Credits</th>
-                    <th>Weekly Hours</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <button class="logout-btn" onclick="logout()">Logout</button>
+    <!-- Navigation Tabs -->
+    <div class="tab-menu">
+      <button class="tab-link active" data-tab="attendance" onclick="showTab('attendance')">Attendance View</button>
+      <button class="tab-link" data-tab="timeschedule" onclick="showTab('timeschedule')">Time Scheduling</button>
+      <button class="tab-link" data-tab="grading" onclick="showTab('grading')">Grading</button>
+      <button class="tab-link" data-tab="subject" onclick="showTab('subject')">Subject Management</button>
     </div>
 
-    <script src="faculty.js"></script>
+    <!-- Tab Contents -->
+    <div class="tab-content">
+      <!-- Attendance View Section -->
+      <div id="attendance" class="tab-panel active">
+        <h2>Attendance View</h2>
+        <p>Select a student to view their weekly attendance details.</p>
+        <div class="attendance-selection">
+          <label for="studentSelect">Student Name:</label>
+          <select id="studentSelect">
+            <option value="">--Select Student--</option>
+            <!-- Options will be populated via JavaScript -->
+          </select>
+          <label for="studentIdInput">ID Number:</label>
+          <input type="text" id="studentIdInput" placeholder="Enter Student ID">
+          <button onclick="viewAttendance()">View Attendance</button>
+        </div>
+        <div id="attendanceResult" class="attendance-result">
+          <!-- Attendance result details will appear here -->
+        </div>
+      </div>
+      
+      <!-- Time Scheduling Section -->
+      <div id="timeschedule" class="tab-panel">
+        <h2>Time Scheduling</h2>
+        <p>This section shows your current working schedule and status (Free/Busy). (Backend integration coming soon.)</p>
+        <!-- Placeholder Schedule Information -->
+        <div class="schedule-info">
+          <ul>
+            <li><strong>Monday:</strong> 9:00 AM - 12:00 PM (Busy), 1:00 PM - 5:00 PM (Free)</li>
+            <li><strong>Tuesday:</strong> 9:00 AM - 11:00 AM (Free), 11:00 AM - 4:00 PM (Busy)</li>
+            <li><strong>Wednesday:</strong> 10:00 AM - 3:00 PM (Busy), 3:00 PM - 6:00 PM (Free)</li>
+            <li><strong>Thursday:</strong> 9:00 AM - 12:00 PM (Free), 1:00 PM - 5:00 PM (Busy)</li>
+            <li><strong>Friday:</strong> 8:00 AM - 12:00 PM (Busy), 1:00 PM - 4:00 PM (Free)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Grading Section -->
+      <div id="grading" class="tab-panel">
+        <h2>Grading Option</h2>
+        <p>This section allows you to grade student assignments using OCR technology. (Backend integration coming soon.)</p>
+        <!-- Assignment Upload Form -->
+        <div class="grading-section">
+          <form id="gradingForm">
+            <label for="assignmentFile">Upload Assignment (Image/PDF):</label>
+            <input type="file" id="assignmentFile" accept="image/*,.pdf">
+            <button type="submit">Grade Assignment</button>
+          </form>
+          <div id="gradingResult" class="grading-result">
+            <p>No assignment graded yet.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Subject Management Section -->
+      <div id="subject" class="tab-panel">
+        <h2>Subject Management</h2>
+        <div class="form-section slide-in">
+          <input type="text" id="subjectName" placeholder="Enter Subject Name">
+          <input type="number" id="subjectCredits" placeholder="Enter Credits" min="1">
+          <button onclick="addSubject()">Add Subject</button>
+        </div>
+        <div class="summary-box">
+          <h3>Total Credits: <span id="totalCredits">0</span></h3>
+          <h3>Weekly Teaching Hours: <span id="totalHours">0</span></h3>
+        </div>
+        <table id="subjectTable" class="table">
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Credits</th>
+              <th>Weekly Hours</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="faculty.js"></script>
 </body>
 </html>
